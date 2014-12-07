@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -53,6 +54,8 @@ namespace Dostalova_DU_2 {
                 OnPropertyChanged();
             }
         }
+
+        public readonly ObservableCollection<Subject> Subjects = new ObservableCollection<Subject>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 

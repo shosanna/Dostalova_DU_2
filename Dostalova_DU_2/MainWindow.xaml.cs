@@ -9,13 +9,25 @@ namespace Dostalova_DU_2 {
     public partial class MainWindow : Window {
 
         private readonly SubjectViewModel _subjectView = new SubjectViewModel();
+        private readonly StudentViewModel _studentView = new StudentViewModel();
 
         public MainWindow() {
             InitializeComponent();
 
+            AddTestSubject("foo");
+            AddTestSubject("bar");
+            AddTestSubject("baz");
+            AddTestSubject("huhu");
+
             // Data context for the whole form is set to the instance of the subjectStudentView model
-            DataContext = _subjectView;
-            LbSubjects.DataContext = _subjectView.Subjects;
+            TabItemSubjects.DataContext = _subjectView;
+            TabItemStudents.DataContext = _studentView;
+            //LbSubjects.DataContext = _subjectView.Subjects;
+
+            LbSubjects.DataContext = SubjectCollection.Instance.Subjects;
+            ComboAvailableSubjects.DataContext = SubjectCollection.Instance.Subjects;
+            ComboStudentSubjects.DataContext = _studentView.Subjects;
+
             TbSubjectName.Focus();
         }
 
@@ -57,6 +69,23 @@ namespace Dostalova_DU_2 {
             if (messageBoxResult == MessageBoxResult.Yes) {
                 _subjectView.ProcessDelete(LbSubjects.SelectedItem);
             }
+        }
+
+        private void BtnAddStudentSubject_Click(object sender, RoutedEventArgs e) {
+            var subject = (Subject)ComboAvailableSubjects.SelectedItem;
+            _studentView.Subjects.Add(subject);
+        }
+
+        private void BtnRemoveStudentSubject_OnClick(object sender, RoutedEventArgs e) {
+            var subject = (Subject)ComboStudentSubjects.SelectedItem;
+            _studentView.Subjects.Remove(subject);
+        }
+
+        private void AddTestSubject(string name) {
+            _subjectView.Name = name;
+            _subjectView.Description = name;
+            _subjectView.ProcessSave();
+            _subjectView.Clear();
         }
     }
 }
