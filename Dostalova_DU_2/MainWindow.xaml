@@ -133,7 +133,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical" Grid.Row="2">
-                                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Availible Subjects" FontWeight="Bold"></TextBlock>
+                                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" FontWeight="Bold"><Run Text="Availa"/><Run Text="ble Subjects"/></TextBlock>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="3*"></ColumnDefinition>

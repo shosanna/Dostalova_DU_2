@@ -10,33 +10,35 @@ namespace Dostalova_DU_2 {
         public string Name { get; set; }
         public int Capacity { get; set; }
         public string Description { get; set; }
-
-        // Saves subject and set all its fields based on the viewmodel
-        public static Subject Save(ViewModel view)
-        {
-            Subject subject = new Subject();
-            subject.Name = view.SubjectName;
-            subject.Capacity = view.SubjectCapacity;
-            subject.Description = view.SubjectDescription;
-
-            SubjectCollection.Add(subject);
-            return subject;
-        }
-
     }
 
 
-    class SubjectCollection
-    {
-        private static ObservableCollection<Subject> _Subjects = new ObservableCollection<Subject>();
+    class SubjectCollection {
+        private SubjectCollection() { }
+        public static readonly SubjectCollection Instance = new SubjectCollection();
 
-        public static void Add(Subject subject)
-        {
-            _Subjects.Add(subject);
+        public readonly ObservableCollection<Subject> Subjects = new ObservableCollection<Subject>();
+
+        /// <summary>
+        /// Saves subject and set all its fields based on the viewmodel
+        /// </summary>
+        public Subject Create(SubjectStudentViewModel subjectStudentView) {
+            var subject = new Subject {
+                Name = subjectStudentView.SubjectName,
+                Capacity = subjectStudentView.SubjectCapacity,
+                Description = subjectStudentView.SubjectDescription
+            };
+
+            Add(subject);
+            return subject;
         }
 
-        public static void Delete(Subject subject) {
-            // TODO IMPLEMENT
+        public void Add(Subject subject) {
+            Subjects.Add(subject);
+        }
+
+        public void Delete(Subject subject) {
+            Subjects.Remove(subject);
         }
     }
 }

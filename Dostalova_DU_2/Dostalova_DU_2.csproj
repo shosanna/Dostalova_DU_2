@@ -56,7 +56,7 @@
     <Compile Include="Student.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="NameValidator.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="SubjectStudentViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
