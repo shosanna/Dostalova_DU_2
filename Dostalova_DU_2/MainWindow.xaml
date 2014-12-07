@@ -1,7 +1,8 @@
 ﻿<Window x:Class="Dostalova_DU_2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:dostalovaDu2="clr-namespace:Dostalova_DU_2"
+        xmlns:dostalovaDu2="clr-namespace:Dostalova_DU_2" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
@@ -64,7 +65,7 @@
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Name"></TextBlock>
                             <TextBox x:Name="TbSubjectName" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1" >
                                 <TextBox.Text>
-                                    <Binding Path="SubjectName" Mode="TwoWay">
+                                    <Binding Path="Name" Mode="TwoWay">
                                         <Binding.ValidationRules>
                                             <dostalovaDu2:NameValidator></dostalovaDu2:NameValidator>
                                         </Binding.ValidationRules>
@@ -75,19 +76,18 @@
                             <TextBlock x:Name="TbCapacity" VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Capacity" Grid.Row="1" ></TextBlock>
                             <TextBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1" Grid.Row="1">
                                 <TextBox.Text>
-                                    <Binding Path="SubjectCapacity" Mode="TwoWay">
+                                    <Binding Path="Capacity" Mode="TwoWay">
                                         <Binding.ValidationRules>
                                             <dostalovaDu2:CapacityValidator></dostalovaDu2:CapacityValidator>
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                           
-                            
+
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Description" Grid.Row="2"></TextBlock>
                             <TextBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Height="100" Grid.Column="1" Grid.Row="2">
                                 <TextBox.Text>
-                                    <Binding Path="SubjectDescription" Mode="TwoWay">
+                                    <Binding Path="Description" Mode="TwoWay">
                                         <Binding.ValidationRules>
                                             <dostalovaDu2:DescriptionValidator></dostalovaDu2:DescriptionValidator>
                                         </Binding.ValidationRules>
@@ -95,7 +95,8 @@
                                 </TextBox.Text>
                             </TextBox>
 
-                            <Button x:Name="BtnCreateSubject" Width="80" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" Content="Create" Grid.Row="3" Grid.Column="1" Click="BtnCreateSubject_Click"></Button>
+                            <Button x:Name="BtnCreateSubject" Width="80" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                    Margin="5" Content="Create" Grid.Row="3" Grid.Column="1" Click="BtnCreateSubject_Click" IsDefault="True"></Button>
                         </Grid>
                     </StackPanel>
                 </Grid>

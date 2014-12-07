@@ -53,10 +53,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Student.cs" />
+    <Compile Include="StudentCollection.cs" />
+    <Compile Include="StudentViewModel.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="NameValidator.cs" />
-    <Compile Include="SubjectStudentViewModel.cs" />
+    <Compile Include="SubjectCollection.cs" />
+    <Compile Include="SubjectViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

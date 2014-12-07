@@ -8,14 +8,15 @@ namespace Dostalova_DU_2 {
     /// </summary>
     public partial class MainWindow : Window {
 
-        private readonly SubjectStudentViewModel _subjectStudentView = new SubjectStudentViewModel();
+        private readonly SubjectViewModel _subjectView = new SubjectViewModel();
 
         public MainWindow() {
             InitializeComponent();
 
             // Data context for the whole form is set to the instance of the subjectStudentView model
-            DataContext = _subjectStudentView;
-            LbSubjects.DataContext = _subjectStudentView.Subjects;
+            DataContext = _subjectView;
+            LbSubjects.DataContext = _subjectView.Subjects;
+            TbSubjectName.Focus();
         }
 
         private void MenuItem_Exit(object sender, RoutedEventArgs e) {
@@ -24,7 +25,7 @@ namespace Dostalova_DU_2 {
             textWriter.WriteStartDocument();
             textWriter.WriteStartElement("Subjects");
 
-            foreach (var subject in _subjectStudentView.Subjects) {
+            foreach (var subject in _subjectView.Subjects) {
                 textWriter.WriteStartElement("Subject");
                 textWriter.WriteElementString("Name", subject.Name);
                 textWriter.WriteElementString("Capacity", subject.Capacity.ToString());
@@ -43,7 +44,8 @@ namespace Dostalova_DU_2 {
         /// </summary>
         private void BtnCreateSubject_Click(object sender, RoutedEventArgs e) {
             if (!Validation.GetHasError(TbSubjectName) || !Validation.GetHasError(TbCapacity)) {
-                _subjectStudentView.ProcessSave();
+                _subjectView.ProcessSave();
+                TbSubjectName.Focus();
             }
         }
 
@@ -53,7 +55,7 @@ namespace Dostalova_DU_2 {
         private void BtnDeleteSubject_Click(object sender, RoutedEventArgs e) {
             var messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes) {
-                _subjectStudentView.ProcessDelete(LbSubjects.SelectedItem);
+                _subjectView.ProcessDelete(LbSubjects.SelectedItem);
             }
         }
     }
