@@ -118,7 +118,17 @@
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Students" FontWeight="Bold"></TextBlock>
-                                <ListBox Height="100" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"></ListBox>
+                                <ListBox ItemsSource="{Binding}" x:Name="LbStudents" Height="100" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="dostalovaDu2:Student">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Margin="2" Text="{Binding FirstName}"></TextBlock>
+                                                <TextBlock Margin="2" Text="{Binding LastName}"></TextBlock>
+
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical" Grid.Row="1">
@@ -128,7 +138,7 @@
                                         <ColumnDefinition Width="3*"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <ComboBox x:Name="ComboStudentSubjects" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5">
+                                    <ComboBox x:Name="ComboStudentSubjects" ItemsSource="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate DataType="dostalovaDu2:Subject">
                                                 <TextBlock Margin="2" Text="{Binding Name}"></TextBlock>
@@ -175,13 +185,13 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="First Name"></TextBlock>
-                            <TextBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1"></TextBox>
+                            <TextBox Text="{Binding FirstName, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1"></TextBox>
 
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Last Name" Grid.Row="1"></TextBlock>
-                            <TextBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1" Grid.Row="1"></TextBox>
+                            <TextBox Text="{Binding LastName, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1" Grid.Row="1"></TextBox>
 
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Date of Birth" Grid.Row="2"></TextBlock>
-                            <DatePicker VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1" Grid.Row="2"></DatePicker>
+                            <DatePicker Text="{Binding DateOfBirth, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1" Grid.Row="2"></DatePicker>
 
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Gender" Grid.Row="3"></TextBlock>
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
@@ -192,7 +202,7 @@
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="left" Margin="5" Text="Field of Study" Grid.Row="4"></TextBlock>
                             <TextBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1" Grid.Row="4"></TextBox>
                         </Grid>
-                        <Button Width="80" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" Content="Create"></Button>
+                        <Button x:Name="BtnCreateStudent" Width="80" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" Content="Create" Click="BtnCreateStudent_Click_1"></Button>
                     </StackPanel>
                 </Grid>
             </TabItem>

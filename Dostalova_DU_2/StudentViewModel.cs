@@ -65,5 +65,26 @@ namespace Dostalova_DU_2 {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public void ProcessSave()
+        {
+            var student = new Student {
+                FirstName = FirstName,
+                LastName = LastName,
+                Gender = Gender,
+                DateOfBirth = DateOfBirth,
+                FieldOfStudy = FieldOfStudy
+                
+            };
+
+            StudentCollection.Instance.Add(student);
+            Clear();
+        }
+
+
+        public void Clear() {
+            FirstName = "";
+            LastName = "";
+        }
     }
 }

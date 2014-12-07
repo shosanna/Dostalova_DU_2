@@ -14,17 +14,18 @@ namespace Dostalova_DU_2 {
         public MainWindow() {
             InitializeComponent();
 
-            AddTestSubject("foo");
-            AddTestSubject("bar");
-            AddTestSubject("baz");
-            AddTestSubject("huhu");
+            AddTestSubject("Ruby");
+            AddTestSubject("C#");
+            AddTestSubject("OCaml");
+            AddTestSubject("Haskell");
 
             // Data context for the whole form is set to the instance of the subjectStudentView model
             TabItemSubjects.DataContext = _subjectView;
             TabItemStudents.DataContext = _studentView;
-            //LbSubjects.DataContext = _subjectView.Subjects;
 
             LbSubjects.DataContext = SubjectCollection.Instance.Subjects;
+            LbStudents.DataContext = StudentCollection.Instance.Students;
+
             ComboAvailableSubjects.DataContext = SubjectCollection.Instance.Subjects;
             ComboStudentSubjects.DataContext = _studentView.Subjects;
 
@@ -70,15 +71,19 @@ namespace Dostalova_DU_2 {
                 _subjectView.ProcessDelete(LbSubjects.SelectedItem);
             }
         }
-
+ 
         private void BtnAddStudentSubject_Click(object sender, RoutedEventArgs e) {
             var subject = (Subject)ComboAvailableSubjects.SelectedItem;
             _studentView.Subjects.Add(subject);
         }
 
         private void BtnRemoveStudentSubject_OnClick(object sender, RoutedEventArgs e) {
-            var subject = (Subject)ComboStudentSubjects.SelectedItem;
-            _studentView.Subjects.Remove(subject);
+             var messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                var subject = (Subject) ComboStudentSubjects.SelectedItem;
+                _studentView.Subjects.Remove(subject);
+            }
         }
 
         private void AddTestSubject(string name) {
@@ -86,6 +91,14 @@ namespace Dostalova_DU_2 {
             _subjectView.Description = name;
             _subjectView.ProcessSave();
             _subjectView.Clear();
+        }
+
+
+        /// <summary>
+        /// Creates a new student
+        /// </summary>
+        private void BtnCreateStudent_Click_1(object sender, RoutedEventArgs e) {
+            _studentView.ProcessSave();
         }
     }
 }

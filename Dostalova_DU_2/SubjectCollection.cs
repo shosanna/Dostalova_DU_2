@@ -14,9 +14,5 @@ namespace Dostalova_DU_2 {
         public void Delete(Subject subject) {
             Subjects.Remove(subject);
         }
-
-        // TODO 1. saving student into students collection and deleting student
-        // TODO 2. Student can sign at particular subject - student has many subjects - only if the subject has capacity
-        // TODO 3. Student can unassign from a subject - remove one subject from student's list of all subjects
     }
 }
